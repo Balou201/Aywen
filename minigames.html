@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aywen : Missions Rétro !</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container minigames-container">
+        <h1>MISSIONS RÉTRO !</h1>
+        <p>Le robot a corrompu tes compétences ! Termine chaque niveau pour "débugger" le système et retrouver ton plein pouvoir !</p>
+
+        <div class="mission-card">
+            <h2>NIVEAU 1 : LABYRINTHE DES PIXELS</h2>
+            <p>Le robot a brouillé ta visée ! Regarde cette vidéo pour prouver ta dextérité et retrouver ta précision. (Temps de jeu recommandé : 1 min)</p>
+            <div class="video-frame">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID_GAMING?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <button class="mission-button" onclick="markMissionComplete(this, 'precision')">COMPLÉTÉ ! (DEX +1)</button>
+            <p class="mission-status" id="status-precision"></p>
+        </div>
+
+        <hr class="separator">
+
+        <div class="mission-card">
+            <h2>NIVEAU 2 : DIALOGUE DU GLITCH</h2>
+            <p>Ta voix est pleine de bugs ! Regarde ce vlog pour prouver que tes récits sont clairs et captivants. (Temps de jeu recommandé : 1 min)</p>
+            <div class="video-frame">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID_VLOG?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <button class="mission-button" onclick="markMissionComplete(this, 'humour')">COMPLÉTÉ ! (INT +1)</button>
+            <p class="mission-status" id="status-humour"></p>
+        </div>
+
+        <hr class="separator">
+
+        <div class="mission-card">
+            <h2>NIVEAU 3 : QUÊTE DES ABONNÉS</h2>
+            <p>Le robot t'a isolé ! Retrouve tes alliés en te reconnectant à ta communauté sur les réseaux sociaux. (Temps de jeu recommandé : 1 min)</p>
+            <div class="social-links-retro">
+                <a href="URL_INSTAGRAM_AYWEN" target="_blank" class="social-button">INSTAGRAM (ALLIÉS)</a>
+                <a href="URL_TIKTOK_AYWEN" target="_blank" class="social-button">TIKTOK (GUILDE)</a>
+            </div>
+            <button class="mission-button" onclick="markMissionComplete(this, 'community')">COMPLÉTÉ ! (CHARISME +1)</button>
+            <p class="mission-status" id="status-community"></p>
+        </div>
+
+        <hr class="separator">
+
+        <div class="final-message" id="finalMessage" style="display: none;">
+            <h2>VICTOIRE ! SYSTÈME DÉBUGGÉ !</h2>
+            <p>Bravo, Aywen ! Toutes tes compétences sont restaurées. Le robot est vaincu et le monde numérique est en sécurité. Tu es un vrai Héros !</p>
+            <p>Maintenant, entre dans le véritable monde d'Aywen, sans bugs ni menaces !</p>
+            <button onclick="window.location.href='index.html'" class="restart-button">EXPLORER LE SITE D'AYWEN (LEVEL UP !)</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript pour gérer les missions
+        const completedMissions = {
+            precision: false,
+            humour: false,
+            community: false
+        };
+
+        function markMissionComplete(buttonElement, missionId) {
+            completedMissions[missionId] = true;
+            buttonElement.disabled = true; // Désactive le bouton
+            buttonElement.textContent = 'MISSION ACCOMPLIE !';
+            document.getElementById(`status-${missionId}`).textContent = '✓ Compétence récupérée !';
+
+            checkAllMissionsComplete();
+        }
+
+        function checkAllMissionsComplete() {
+            if (completedMissions.precision && completedMissions.humour && completedMissions.community) {
+                document.getElementById('finalMessage').style.display = 'block';
+                // Optionnel: cacher les missions une fois toutes terminées
+                document.querySelectorAll('.mission-card').forEach(card => card.style.display = 'none');
+                document.querySelectorAll('.separator').forEach(sep => sep.style.display = 'none');
+            }
+        }
+    </script>
+</body>
+</html>
