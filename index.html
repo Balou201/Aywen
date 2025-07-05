@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aywen : Le Défi du Robot !</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="welcome-screen">
+        <h1>Aywen : Le Défi du Robot !</h1>
+        <p>Un robot maléfique a piraté le site... Seul le véritable Aywen peut rétablir l'ordre !</p>
+        <div class="input-group">
+            <label for="youtubeId">Entre ton @YouTube :</label>
+            <input type="text" id="youtubeId" placeholder="@AywenVideos">
+            <button id="enterButton">Entrer dans l'Arène</button>
+        </div>
+        <p class="error-message" id="errorMessage"></p>
+    </div>
+
+    <div class="loading-screen" id="loading-screen">
+        <h2 id="loadingMessage"></h2>
+        <div class="loader"></div>
+        <p id="storyText"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
