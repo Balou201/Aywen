@@ -3,85 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aywen : Missions Rétro !</title>
+    <title>Aywen : Missions Rétro Arcade !</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container minigames-container">
-        <h1>MISSIONS RÉTRO !</h1>
-        <p>Le robot a corrompu tes compétences ! Termine chaque niveau pour "débugger" le système et retrouver ton plein pouvoir !</p>
+        <h1>ARCADE D'AYWEN : LES DÉFIS !</h1>
+        <p>Le robot a corrompu la matrice ! Lance chaque "jeu" pour restaurer les compétences d'Aywen et le vaincre !</p>
 
-        <div class="mission-card">
-            <h2>NIVEAU 1 : LABYRINTHE DES PIXELS</h2>
-            <p>Le robot a brouillé ta visée ! Regarde cette vidéo pour prouver ta dextérité et retrouver ta précision. (Temps de jeu recommandé : 1 min)</p>
-            <div class="video-frame">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID_GAMING?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="mission-card" id="mission-pacman">
+            <span class="minigame-completed-icon">✓</span>
+            <h2>NIVEAU 1 : PAC-MAN (CONTENU GLITCHÉ)</h2>
+            <p>Le robot a semé des bugs dans le contenu ! Clique sur tous les points pour les "manger" et organiser le flux.</p>
+            <div class="minigame-area">
+                <div class="pacman-grid" id="pacmanGrid">
+                    </div>
+                <p class="pacman-message" id="pacmanMessage">Points restants : <span id="pacmanDotsCount"></span></p>
             </div>
-            <button class="mission-button" onclick="markMissionComplete(this, 'precision')">COMPLÉTÉ ! (DEX +1)</button>
-            <p class="mission-status" id="status-precision"></p>
+            <p class="mission-status">Voir le contenu clair après débuggage : <a href="http://googleusercontent.com/youtube.com/5" target="_blank" class="social-button">VIDEO ORGANISEE</a></p>
+            <button class="mission-button" onclick="markMissionComplete(this, 'pacman')">DÉBUGGÉ ! (ORG +1)</button>
+            <p class="mission-status" id="status-pacman"></p>
         </div>
 
         <hr class="separator">
 
-        <div class="mission-card">
-            <h2>NIVEAU 2 : DIALOGUE DU GLITCH</h2>
-            <p>Ta voix est pleine de bugs ! Regarde ce vlog pour prouver que tes récits sont clairs et captivants. (Temps de jeu recommandé : 1 min)</p>
-            <div class="video-frame">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/VIDEO_ID_VLOG?controls=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="mission-card" id="mission-invaders">
+            <span class="minigame-completed-icon">✓</span>
+            <h2>NIVEAU 2 : SPACE INVADERS (ATTAQUE DE SPAM)</h2>
+            <p>Des spams attaquent la communauté ! Clique sur les envahisseurs pour les éliminer. (Clique 5 fois)</p>
+            <div class="minigame-area">
+                <div class="invaders-ship"></div>
+                <div class="invaders-alien" style="top: 10%; left: 15%;"></div>
+                <div class="invaders-alien" style="top: 10%; left: 45%;"></div>
+                <div class="invaders-alien" style="top: 10%; left: 75%;"></div>
+                <div class="invaders-alien" style="top: 30%; left: 30%;"></div>
+                <div class="invaders-alien" style="top: 30%; left: 60%;"></div>
+                <p class="invaders-message" id="invadersMessage">Envahisseurs restants : 5</p>
             </div>
-            <button class="mission-button" onclick="markMissionComplete(this, 'humour')">COMPLÉTÉ ! (INT +1)</button>
-            <p class="mission-status" id="status-humour"></p>
+            <p class="mission-status">Voir Aywen défendre la commu : <a href="http://googleusercontent.com/youtube.com/6" target="_blank" class="social-button">DÉFENSE ACTIVE</a></p>
+            <button class="mission-button" onclick="markMissionComplete(this, 'invaders')">SPAMS ÉLIMINÉS ! (RES +1)</button>
+            <p class="mission-status" id="status-invaders"></p>
         </div>
 
         <hr class="separator">
 
-        <div class="mission-card">
-            <h2>NIVEAU 3 : QUÊTE DES ABONNÉS</h2>
-            <p>Le robot t'a isolé ! Retrouve tes alliés en te reconnectant à ta communauté sur les réseaux sociaux. (Temps de jeu recommandé : 1 min)</p>
-            <div class="social-links-retro">
-                <a href="URL_INSTAGRAM_AYWEN" target="_blank" class="social-button">INSTAGRAM (ALLIÉS)</a>
-                <a href="URL_TIKTOK_AYWEN" target="_blank" class="social-button">TIKTOK (GUILDE)</a>
+        <div class="mission-card" id="mission-tetris">
+            <span class="minigame-completed-icon">✓</span>
+            <h2>NIVEAU 3 : TETRIS (TITRE CORROMPU)</h2>
+            <p>Les informations de tes vidéos sont désordonnées ! Clique sur 5 blocs pour les "placer" correctement et optimiser.</p>
+            <div class="minigame-area">
+                <div class="tetris-well">
+                    </div>
+                <p class="tetris-message" id="tetrisMessage">Blocs à placer : 5</p>
             </div>
-            <button class="mission-button" onclick="markMissionComplete(this, 'community')">COMPLÉTÉ ! (CHARISME +1)</button>
-            <p class="mission-status" id="status-community"></p>
+            <p class="mission-status">Voir une vidéo optimisée d'Aywen : <a href="http://googleusercontent.com/youtube.com/7" target="_blank" class="social-button">CONTENU CLAIR</a></p>
+            <button class="mission-button" onclick="markMissionComplete(this, 'tetris')">OPTIMISÉ ! (STR +1)</button>
+            <p class="mission-status" id="status-tetris"></p>
+        </div>
+
+        <hr class="separator">
+
+        <div class="mission-card" id="mission-frogger">
+            <span class="minigame-completed-icon">✓</span>
+            <h2>NIVEAU 4 : FROGGER (PARCOURS D'OBSTACLES)</h2>
+            <p>Des obstacles sur ton chemin vers le public ! Clique pour "traverser la rue" et atteindre ton point de diffusion. (Clique 3 fois)</p>
+            <div class="minigame-area">
+                <div class="frogger-road">
+                    <div class="frogger-car" style="top: 20%; animation-duration: 4s;"></div>
+                    <div class="frogger-car" style="top: 50%; animation-duration: 3s; animation-delay: 1s;"></div>
+                    <div class="frogger-car" style="top: 80%; animation-duration: 5s; animation-delay: 2s;"></div>
+                </div>
+                <button class="frogger-button" id="froggerClickButton">CLIQUE POUR TRAVERSER</button>
+                <p class="frogger-message" id="froggerMessage">Traversées restantes : 3</p>
+            </div>
+            <p class="mission-status">Voir Aywen en direct : <a href="URL_TWITCH_AYWEN" target="_blank" class="social-button">LIVE IMMINENT</a></p>
+            <button class="mission-button" onclick="markMissionComplete(this, 'frogger')">TRAVERSÉE RÉUSSIE ! (END +1)</button>
+            <p class="mission-status" id="status-frogger"></p>
+        </div>
+
+        <hr class="separator">
+
+        <div class="mission-card" id="mission-pong">
+            <span class="minigame-completed-icon">✓</span>
+            <h2>NIVEAU 5 : PONG (DUEL DES COMMENTAIRES)</h2>
+            <p>Les commentaires sont en feu ! Clique sur ta raquette pour renvoyer le "balle" (commentaire) et calmer le jeu. (Clique 5 fois)</p>
+            <div class="minigame-area">
+                <div class="pong-court">
+                    <div class="pong-paddle left"></div>
+                    <div class="pong-paddle right"></div>
+                    <div class="pong-ball"></div>
+                </div>
+                <button class="pong-button" id="pongClickButton">Renvoyer !</button>
+                <p class="pong-message" id="pongMessage">Frappes restantes : 5</p>
+            </div>
+            <p class="mission-status">Voir Aywen gérer la situation : <a href="URL_SOCIAL_AYWEN" target="_blank" class="social-button">CALME RETROUVÉ</a></p>
+            <button class="mission-button" onclick="markMissionComplete(this, 'pong')">JEUX CALMÉS ! (SAGESSE +1)</button>
+            <p class="mission-status" id="status-pong"></p>
         </div>
 
         <hr class="separator">
 
         <div class="final-message" id="finalMessage" style="display: none;">
-            <h2>VICTOIRE ! SYSTÈME DÉBUGGÉ !</h2>
-            <p>Bravo, Aywen ! Toutes tes compétences sont restaurées. Le robot est vaincu et le monde numérique est en sécurité. Tu es un vrai Héros !</p>
-            <p>Maintenant, entre dans le véritable monde d'Aywen, sans bugs ni menaces !</p>
-            <button onclick="window.location.href='index.html'" class="restart-button">EXPLORER LE SITE D'AYWEN (LEVEL UP !)</button>
+            <h2>VICTOIRE ! ARCADE DÉBUGGÉE !</h2>
+            <p>Félicitations, Aywen ! Tu as maîtrisé tous les défis rétro et débuggé la matrice. Le robot est vaincu et tes compétences sont plus fortes que jamais !</p>
+            <p>Le véritable site d'Aywen est maintenant accessible, sans bugs ni menaces !</p>
+            <button onclick="window.location.href='index.html'" class="restart-button">ACCÉDER AU SITE D'AYWEN (HIGH SCORE !)</button>
         </div>
     </div>
 
     <script>
-        // JavaScript pour gérer les missions
+        // Logique générale pour les missions
         const completedMissions = {
-            precision: false,
-            humour: false,
-            community: false
+            pacman: false,
+            invaders: false,
+            tetris: false,
+            frogger: false,
+            pong: false
         };
 
         function markMissionComplete(buttonElement, missionId) {
-            completedMissions[missionId] = true;
-            buttonElement.disabled = true; // Désactive le bouton
-            buttonElement.textContent = 'MISSION ACCOMPLIE !';
-            document.getElementById(`status-${missionId}`).textContent = '✓ Compétence récupérée !';
-
-            checkAllMissionsComplete();
+            if (!completedMissions[missionId]) { // S'assurer qu'on ne complète qu'une fois
+                completedMissions[missionId] = true;
+                buttonElement.disabled = true;
+                buttonElement.textContent = 'MISSION ACCOMPLIE !';
+                document.getElementById(`status-${missionId}`).textContent = '✓ Compétence récupérée !';
+                document.getElementById(`mission-${missionId}`).classList.add('completed'); // Ajoute la classe pour l'icône
+                checkAllMissionsComplete();
+            }
         }
 
         function checkAllMissionsComplete() {
-            if (completedMissions.precision && completedMissions.humour && completedMissions.community) {
+            if (completedMissions.pacman && completedMissions.invaders && completedMissions.tetris && completedMissions.frogger && completedMissions.pong) {
                 document.getElementById('finalMessage').style.display = 'block';
                 // Optionnel: cacher les missions une fois toutes terminées
                 document.querySelectorAll('.mission-card').forEach(card => card.style.display = 'none');
                 document.querySelectorAll('.separator').forEach(sep => sep.style.display = 'none');
             }
         }
+
+        // --- Logique spécifique à chaque mini-jeu ---
+
+        // Pac-Man
+        const pacmanGrid = document.getElementById('pacmanGrid');
+        const pacmanDotsCount = document.getElementById('pacmanDotsCount');
+        let dotsToEat = 20; // Nombre de points pour le jeu
+        function initPacman() {
+            pacmanGrid.innerHTML = '';
+            dotsToEat = 20; // Réinitialiser pour un rechargement
+            for (let i = 0; i < dotsToEat; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('pacman-dot');
+                dot.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('eaten') && !completedMissions.pacman) {
+                        e.target.classList.add('eaten');
+                        dotsToEat--;
+                        pacmanDotsCount.textContent = dotsToEat;
+                        if (dotsToEat <= 0) {
+                            markMissionComplete(document.querySelector('#mission-pacman .mission-button'), 'pacman');
+                            document.getElementById('pacmanMessage').textContent = 'Tous les bugs mangés !';
+                        }
+                    }
+                });
+                pacmanGrid.appendChild(dot);
+            }
+            pacmanDotsCount.textContent = dotsToEat;
+        }
+        initPacman(); // Initialise le jeu au chargement
+
+        // Space Invaders
+        const invadersMessage = document.getElementById('invadersMessage');
+        let invadersToShoot = 5;
+        document.querySelectorAll('.invaders-alien').forEach(alien => {
+            alien.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('hit') && !completedMissions.invaders && invadersToShoot > 0) {
+                    e.target.classList.add('hit');
+                    invadersToShoot--;
+                    invadersMessage.textContent = `Envahisseurs restants : ${invadersToShoot}`;
+                    if (invadersToShoot <= 0) {
+                        markMissionComplete(document.querySelector('#mission-invaders .mission-button'), 'invaders');
+                        invadersMessage.textContent = 'Tous les spams éliminés !';
+                    }
+                }
+            });
+        });
+
+        // Tetris
+        const tetrisMessage = document.getElementById('tetrisMessage');
+        const tetrisWell = document.querySelector('.tetris-well');
+        let blocksToPlace = 5;
+
+        function initTetris() {
+            tetrisWell.innerHTML = '';
+            blocksToPlace = 5; // Réinitialiser
+            for (let i = 0; i < 5; i++) { // Créer 5 lignes de blocs pour l'exemple
+                const row = document.createElement('div');
+                row.classList.add('tetris-row');
+                for (let j = 0; j < 5; j++) { // 5 blocs par ligne
+                    const block = document.createElement('div');
+                    block.classList.add('tetris-block');
+                    block.addEventListener('click', (e) => {
+                        if (!e.target.classList.contains('placed') && !completedMissions.tetris && blocksToPlace > 0) {
+                            e.target.classList.add('placed');
+                            blocksToPlace--;
+                            tetrisMessage.textContent = `Blocs à placer : ${blocksToPlace}`;
+                            if (blocksToPlace <= 0) {
+                                markMissionComplete(document.querySelector('#mission-tetris .mission-button'), 'tetris');
+                                tetrisMessage.textContent = 'Vidéo optimisée !';
+                            }
+                        }
+                    });
+                    row.appendChild(block);
+                }
+                tetrisWell.appendChild(row);
+            }
+            tetrisMessage.textContent = `Blocs à placer : ${blocksToPlace}`;
+        }
+        initTetris();
+
+
+        // Frogger
+        const froggerClickButton = document.getElementById('froggerClickButton');
+        const froggerMessage = document.getElementById('froggerMessage');
+        let crossingsLeft = 3;
+
+        froggerClickButton.addEventListener('click', () => {
+            if (!completedMissions.frogger && crossingsLeft > 0) {
+                crossingsLeft--;
+                froggerMessage.textContent = `Traversées restantes : ${crossingsLeft}`;
+                // Ici, tu pourrais ajouter une animation de "saut" pour le bouton ou l'écran
+                froggerClickButton.style.transform = 'scale(0.9)';
+                setTimeout(() => froggerClickButton.style.transform = 'scale(1)', 100);
+
+                if (crossingsLeft <= 0) {
+                    markMissionComplete(document.querySelector('#mission-frogger .mission-button'), 'frogger');
+                    froggerMessage.textContent = 'Parcours terminé !';
+                    froggerClickButton.disabled = true;
+                }
+            }
+        });
+
+        // Pong
+        const pongClickButton = document.getElementById('pongClickButton');
+        const pongMessage = document.getElementById('pongMessage');
+        let strikesLeft = 5;
+
+        pongClickButton.addEventListener('click', () => {
+            if (!completedMissions.pong && strikesLeft > 0) {
+                strikesLeft--;
+                pongMessage.textContent = `Frappes restantes : ${strikesLeft}`;
+                // Petite animation de la balle ou de la raquette
+                const ball = document.querySelector('.pong-ball');
+                ball.style.animation = 'none'; // Arrête l'animation CSS
+                ball.style.transform = 'translateX(50px)'; // Simule une frappe
+                setTimeout(() => {
+                    ball.style.transform = 'translateX(0)';
+                    ball.style.animation = 'bounceBall 2s linear infinite alternate'; // Relance l'animation
+                }, 200);
+
+                if (strikesLeft <= 0) {
+                    markMissionComplete(document.querySelector('#mission-pong .mission-button'), 'pong');
+                    pongMessage.textContent = 'Commentaires gérés !';
+                    pongClickButton.disabled = true;
+                }
+            }
+        });
+
     </script>
 </body>
 </html>
