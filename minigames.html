@@ -21,7 +21,7 @@
                     </div>
                 <p class="pacman-message" id="pacmanMessage">Points restants : <span id="pacmanDotsCount"></span></p>
             </div>
-            <p class="mission-status">Voir le contenu clair après débuggage : <a href="http://googleusercontent.com/youtube.com/5" target="_blank" class="social-button">VIDEO ORGANISEE</a></p>
+            <p class="mission-status">Voir le contenu clair après débuggage : <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-button">VIDEO ORGANISEE</a></p>
             <button class="mission-button" onclick="markMissionComplete(this, 'pacman')">DÉBUGGÉ ! (ORG +1)</button>
             <p class="mission-status" id="status-pacman"></p>
         </div>
@@ -41,7 +41,7 @@
                 <div class="invaders-alien" style="top: 30%; left: 60%;"></div>
                 <p class="invaders-message" id="invadersMessage">Envahisseurs restants : 5</p>
             </div>
-            <p class="mission-status">Voir Aywen défendre la commu : <a href="http://googleusercontent.com/youtube.com/6" target="_blank" class="social-button">DÉFENSE ACTIVE</a></p>
+            <p class="mission-status">Voir Aywen défendre la commu : <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-button">DÉFENSE ACTIVE</a></p>
             <button class="mission-button" onclick="markMissionComplete(this, 'invaders')">SPAMS ÉLIMINÉS ! (RES +1)</button>
             <p class="mission-status" id="status-invaders"></p>
         </div>
@@ -57,7 +57,7 @@
                     </div>
                 <p class="tetris-message" id="tetrisMessage">Blocs à placer : 5</p>
             </div>
-            <p class="mission-status">Voir une vidéo optimisée d'Aywen : <a href="http://googleusercontent.com/youtube.com/7" target="_blank" class="social-button">CONTENU CLAIR</a></p>
+            <p class="mission-status">Voir une vidéo optimisée d'Aywen : <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-button">CONTENU CLAIR</a></p>
             <button class="mission-button" onclick="markMissionComplete(this, 'tetris')">OPTIMISÉ ! (STR +1)</button>
             <p class="mission-status" id="status-tetris"></p>
         </div>
@@ -70,14 +70,14 @@
             <p>Des obstacles sur ton chemin vers le public ! Clique pour "traverser la rue" et atteindre ton point de diffusion. (Clique 3 fois)</p>
             <div class="minigame-area">
                 <div class="frogger-road">
-                    <div class="frogger-car" style="top: 20%; animation-duration: 4s;"></div>
-                    <div class="frogger-car" style="top: 50%; animation-duration: 3s; animation-delay: 1s;"></div>
-                    <div class="frogger-car" style="top: 80%; animation-duration: 5s; animation-delay: 2s;"></div>
+                    <div class="frogger-car" style="top: 20%; animation-duration: 4s; animation-delay: 0s;"></div>
+                    <div class="frogger-car" style="top: 50%; animation-duration: 3s; animation-delay: 1.5s;"></div>
+                    <div class="frogger-car" style="top: 80%; animation-duration: 5s; animation-delay: 3s;"></div>
                 </div>
                 <button class="frogger-button" id="froggerClickButton">CLIQUE POUR TRAVERSER</button>
                 <p class="frogger-message" id="froggerMessage">Traversées restantes : 3</p>
             </div>
-            <p class="mission-status">Voir Aywen en direct : <a href="URL_TWITCH_AYWEN" target="_blank" class="social-button">LIVE IMMINENT</a></p>
+            <p class="mission-status">Voir Aywen en direct : <a href="https://www.twitch.tv/aywen_generique" target="_blank" class="social-button">LIVE IMMINENT</a></p>
             <button class="mission-button" onclick="markMissionComplete(this, 'frogger')">TRAVERSÉE RÉUSSIE ! (END +1)</button>
             <p class="mission-status" id="status-frogger"></p>
         </div>
@@ -97,7 +97,7 @@
                 <button class="pong-button" id="pongClickButton">Renvoyer !</button>
                 <p class="pong-message" id="pongMessage">Frappes restantes : 5</p>
             </div>
-            <p class="mission-status">Voir Aywen gérer la situation : <a href="URL_SOCIAL_AYWEN" target="_blank" class="social-button">CALME RETROUVÉ</a></p>
+            <p class="mission-status">Voir Aywen gérer la situation : <a href="https://twitter.com/Aywen_Generique" target="_blank" class="social-button">CALME RETROUVÉ</a></p>
             <button class="mission-button" onclick="markMissionComplete(this, 'pong')">JEUX CALMÉS ! (SAGESSE +1)</button>
             <p class="mission-status" id="status-pong"></p>
         </div>
@@ -123,12 +123,12 @@
         };
 
         function markMissionComplete(buttonElement, missionId) {
-            if (!completedMissions[missionId]) { // S'assurer qu'on ne complète qu'une fois
+            if (!completedMissions[missionId]) {
                 completedMissions[missionId] = true;
                 buttonElement.disabled = true;
                 buttonElement.textContent = 'MISSION ACCOMPLIE !';
                 document.getElementById(`status-${missionId}`).textContent = '✓ Compétence récupérée !';
-                document.getElementById(`mission-${missionId}`).classList.add('completed'); // Ajoute la classe pour l'icône
+                document.getElementById(`mission-${missionId}`).classList.add('completed');
                 checkAllMissionsComplete();
             }
         }
@@ -136,7 +136,6 @@
         function checkAllMissionsComplete() {
             if (completedMissions.pacman && completedMissions.invaders && completedMissions.tetris && completedMissions.frogger && completedMissions.pong) {
                 document.getElementById('finalMessage').style.display = 'block';
-                // Optionnel: cacher les missions une fois toutes terminées
                 document.querySelectorAll('.mission-card').forEach(card => card.style.display = 'none');
                 document.querySelectorAll('.separator').forEach(sep => sep.style.display = 'none');
             }
@@ -144,13 +143,13 @@
 
         // --- Logique spécifique à chaque mini-jeu ---
 
-        // Pac-Man
+        // Pac-Man (Clique sur 20 points)
         const pacmanGrid = document.getElementById('pacmanGrid');
         const pacmanDotsCount = document.getElementById('pacmanDotsCount');
-        let dotsToEat = 20; // Nombre de points pour le jeu
+        let dotsToEat = 20;
         function initPacman() {
-            pacmanGrid.innerHTML = '';
-            dotsToEat = 20; // Réinitialiser pour un rechargement
+            pacmanGrid.innerHTML = ''; // Nettoyer pour réinitialisation si besoin
+            dotsToEat = 20; // Réinitialiser le compteur
             for (let i = 0; i < dotsToEat; i++) {
                 const dot = document.createElement('div');
                 dot.classList.add('pacman-dot');
@@ -171,7 +170,7 @@
         }
         initPacman(); // Initialise le jeu au chargement
 
-        // Space Invaders
+        // Space Invaders (Clique sur 5 aliens)
         const invadersMessage = document.getElementById('invadersMessage');
         let invadersToShoot = 5;
         document.querySelectorAll('.invaders-alien').forEach(alien => {
@@ -188,18 +187,19 @@
             });
         });
 
-        // Tetris
+        // Tetris (Clique sur 5 blocs)
         const tetrisMessage = document.getElementById('tetrisMessage');
         const tetrisWell = document.querySelector('.tetris-well');
         let blocksToPlace = 5;
 
         function initTetris() {
-            tetrisWell.innerHTML = '';
+            tetrisWell.innerHTML = ''; // Nettoyer
             blocksToPlace = 5; // Réinitialiser
-            for (let i = 0; i < 5; i++) { // Créer 5 lignes de blocs pour l'exemple
+            // Créer une petite grille de blocs cliquables
+            for (let i = 0; i < 5; i++) {
                 const row = document.createElement('div');
                 row.classList.add('tetris-row');
-                for (let j = 0; j < 5; j++) { // 5 blocs par ligne
+                for (let j = 0; j < 5; j++) {
                     const block = document.createElement('div');
                     block.classList.add('tetris-block');
                     block.addEventListener('click', (e) => {
@@ -221,8 +221,7 @@
         }
         initTetris();
 
-
-        // Frogger
+        // Frogger (Clique 3 fois pour traverser)
         const froggerClickButton = document.getElementById('froggerClickButton');
         const froggerMessage = document.getElementById('froggerMessage');
         let crossingsLeft = 3;
@@ -231,7 +230,7 @@
             if (!completedMissions.frogger && crossingsLeft > 0) {
                 crossingsLeft--;
                 froggerMessage.textContent = `Traversées restantes : ${crossingsLeft}`;
-                // Ici, tu pourrais ajouter une animation de "saut" pour le bouton ou l'écran
+                // Animation simple de "saut" du bouton
                 froggerClickButton.style.transform = 'scale(0.9)';
                 setTimeout(() => froggerClickButton.style.transform = 'scale(1)', 100);
 
@@ -243,7 +242,7 @@
             }
         });
 
-        // Pong
+        // Pong (Clique 5 fois pour renvoyer la balle)
         const pongClickButton = document.getElementById('pongClickButton');
         const pongMessage = document.getElementById('pongMessage');
         let strikesLeft = 5;
