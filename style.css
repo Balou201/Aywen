@@ -406,3 +406,220 @@ button:hover {
     }
     .social-button:last-of-type { margin-bottom: 0; }
 }
+
+/* --- Styles spécifiques aux mini-jeux (partie active) --- */
+
+.minigame-area {
+    background-color: #000; /* Fond noir pour l'écran de jeu */
+    border: 3px solid #00ff00; /* Bordure verte néon */
+    margin: 20px auto;
+    padding: 10px;
+    width: 100%; /* S'adapte à la largeur de la carte */
+    max-width: 400px; /* Taille maximale pour l'aire de jeu */
+    aspect-ratio: 16 / 9; /* Ratio pour les écrans de jeu */
+    position: relative;
+    overflow: hidden; /* Cache ce qui dépasse */
+    box-shadow: inset 0 0 15px rgba(0,255,0,0.5); /* Effet d'écran allumé */
+    display: flex; /* Centrer le contenu */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 0.8em;
+    color: #00ff00;
+}
+
+/* Styles pour le Pac-Man Like */
+.pacman-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 90%;
+    height: 90%;
+    gap: 2px;
+    border: 1px solid #ffcc00;
+}
+.pacman-dot {
+    width: 80%;
+    height: 80%;
+    background-color: #ffcc00; /* Points jaunes */
+    border-radius: 50%;
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+.pacman-dot.eaten {
+    background-color: transparent;
+}
+.pacman-message {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #ffcc00;
+}
+
+
+/* Styles pour Space Invaders Like */
+.invaders-ship {
+    width: 30px;
+    height: 20px;
+    background-color: #00ff00;
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 15px);
+}
+.invaders-alien {
+    width: 20px;
+    height: 15px;
+    background-color: #ff4d4d;
+    position: absolute;
+    top: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.invaders-alien.hit {
+    opacity: 0;
+    transform: scale(0);
+}
+.invaders-message {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #ff4d4d;
+}
+
+
+/* Styles pour Tetris Like */
+.tetris-well {
+    width: 80%;
+    height: 80%;
+    background-color: #333;
+    border: 2px solid #aaa;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    position: relative;
+}
+.tetris-row {
+    display: flex;
+    justify-content: space-between;
+    height: 10px; /* Hauteur d'une ligne */
+    margin-bottom: 2px;
+}
+.tetris-block {
+    width: 20%; /* 5 blocs par ligne */
+    height: 100%;
+    background-color: #00ffff; /* Couleur des blocs */
+    border: 1px solid #008888;
+    box-shadow: inset 0 0 3px rgba(255,255,255,0.5);
+    cursor: pointer;
+}
+.tetris-block.placed {
+    background-color: #ffcc00; /* Blocs placés */
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+}
+.tetris-message {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #00ffff;
+}
+
+
+/* Styles pour Frogger Like */
+.frogger-road {
+    width: 90%;
+    height: 60%;
+    background-color: #222;
+    border: 2px solid #555;
+    position: relative;
+    overflow: hidden;
+}
+.frogger-car {
+    width: 30px;
+    height: 20px;
+    background-color: #ff00ff; /* Magenta */
+    position: absolute;
+    left: 0;
+    animation: moveCar 3s linear infinite;
+}
+.frogger-car:nth-child(2) { animation-delay: 1.5s; background-color: #00ffff; }
+.frogger-message {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #ff00ff;
+}
+@keyframes moveCar {
+    0% { left: -30px; }
+    100% { left: 100%; }
+}
+
+/* Styles pour Pong Like */
+.pong-court {
+    width: 90%;
+    height: 70%;
+    background-color: #000;
+    border: 2px dashed #fff;
+    position: relative;
+}
+.pong-paddle {
+    width: 8px;
+    height: 40px;
+    background-color: #fff;
+    position: absolute;
+    top: calc(50% - 20px);
+}
+.pong-paddle.left { left: 5px; }
+.pong-paddle.right { right: 5px; }
+.pong-ball {
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - 5px);
+    left: calc(50% - 5px);
+    animation: bounceBall 2s linear infinite alternate;
+}
+.pong-message {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #fff;
+}
+@keyframes bounceBall {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(50px, 30px); }
+    50% { transform: translate(100px, 0); }
+    75% { transform: translate(50px, -30px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Général pour les icônes de "complété" */
+.minigame-completed-icon {
+    display: none; /* Caché par défaut */
+    color: #00ff00; /* Vert victoire */
+    font-size: 2em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-shadow: 0 0 5px #00ff00;
+}
+.mission-card.completed .minigame-completed-icon {
+    display: block; /* Visible quand la mission est complète */
+}
+
+/* Réactivité pour les mini-jeux */
+@media (max-width: 480px) {
+    .minigame-area {
+        max-width: 90%;
+        height: 200px; /* Ajuster la hauteur sur mobile */
+    }
+    .pacman-grid {
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(7, 1fr);
+    }
+    .pacman-dot {
+        width: 60%;
+        height: 60%;
+    }
+    .invaders-ship, .invaders-alien, .frogger-car, .pong-paddle, .pong-ball {
+        transform: scale(0.8); /* Réduire la taille des éléments de jeu */
+    }
+}
