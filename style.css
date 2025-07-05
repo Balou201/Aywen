@@ -1,18 +1,17 @@
 body {
     margin: 0;
-    font-family: 'Press Start 2P', cursive; /* Police pixelisée */
-    background-color: #0a0a1a; /* Fond très sombre pour un contraste élevé */
-    color: #e0e0e0; /* Texte clair */
+    font-family: 'Press Start 2P', cursive;
+    background-color: #0a0a1a;
+    color: #e0e0e0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     text-align: center;
     overflow: hidden;
-    position: relative; /* Pour les scanlines */
+    position: relative;
 }
 
-/* Effet de scanlines pour un look CRT */
 body::before {
     content: '';
     position: absolute;
@@ -27,27 +26,27 @@ body::before {
         transparent 1px,
         transparent 2px
     );
-    pointer-events: none; /* Permet d'interagir avec les éléments en dessous */
-    z-index: 99; /* Au-dessus du contenu mais sous l'écran de chargement */
+    pointer-events: none;
+    z-index: 99;
 }
 
 .container {
-    background-color: #1a1a2e; /* Conteneur principal */
+    background-color: #1a1a2e;
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7); /* Ombre cyber lumineuse */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
     max-width: 650px;
     width: 90%;
-    border: 3px solid #00ffff; /* Bordure néon */
+    border: 3px solid #00ffff;
     animation: fadeIn 1s ease-out;
 }
 
 h1 {
-    color: #00ffff; /* Titre néon */
+    color: #00ffff;
     margin-bottom: 25px;
     font-size: 2em;
-    text-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 255, 255, 0.5); /* Double ombre pour l'effet néon */
-    animation: glitchText 1.5s infinite alternate; /* Petit effet de glitch */
+    text-shadow: 0 0 10px #00ffff, 0 0 20px rgba(0, 255, 255, 0.5);
+    animation: glitchText 1.5s infinite alternate;
 }
 
 @keyframes glitchText {
@@ -63,7 +62,7 @@ p {
     margin-bottom: 30px;
     font-size: 0.95em;
     line-height: 1.6;
-    color: #b0e0b0; /* Vert pâle pour le texte */
+    color: #b0e0b0;
 }
 
 .input-group {
@@ -86,7 +85,7 @@ input[type="text"] {
     border: 2px solid #00ffff;
     border-radius: 5px;
     background-color: #2a2a4a;
-    color: #00ff00; /* Texte vert sur fond sombre */
+    color: #00ff00;
     font-size: 1.1em;
     outline: none;
     transition: all 0.3s ease;
@@ -140,7 +139,7 @@ button:hover {
     align-items: center;
     min-height: 100vh;
     width: 100%;
-    background-color: #050510; /* Fond très sombre */
+    background-color: #050510;
     position: absolute;
     top: 0;
     left: 0;
@@ -188,7 +187,7 @@ button:hover {
 .minigames-container h1 {
     font-size: 2.2em;
     margin-bottom: 25px;
-    color: #ffcc00; /* Jaune or pour les titres de mission */
+    color: #ffcc00;
     text-shadow: 0 0 10px #ffcc00, 0 0 20px rgba(255, 204, 0, 0.5);
 }
 
@@ -199,15 +198,15 @@ button:hover {
 }
 
 .mission-card {
-    background-color: #2a2a4a; /* Fond des cartes de mission */
-    border: 2px solid #ffcc00; /* Bordure jaune */
+    background-color: #2a2a4a;
+    border: 2px solid #ffcc00;
     border-radius: 8px;
     padding: 30px;
     margin-bottom: 45px;
     box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
     animation: slideIn 0.8s ease-out forwards;
     opacity: 0;
-    position: relative; /* Pour les éléments décoratifs */
+    position: relative;
 }
 
 .mission-card::before, .mission-card::after {
@@ -223,10 +222,11 @@ button:hover {
 .mission-card::after { bottom: 10px; right: 10px; }
 
 
-/* Délai d'animation pour chaque carte */
 .mission-card:nth-of-type(1) { animation-delay: 0.2s; }
 .mission-card:nth-of-type(2) { animation-delay: 0.4s; }
 .mission-card:nth-of-type(3) { animation-delay: 0.6s; }
+.mission-card:nth-of-type(4) { animation-delay: 0.8s; }
+.mission-card:nth-of-type(5) { animation-delay: 1.0s; }
 
 
 @keyframes slideIn {
@@ -235,7 +235,7 @@ button:hover {
 }
 
 .mission-card h2 {
-    color: #00ff00; /* Vert pour les titres de mission */
+    color: #00ff00;
     margin-bottom: 15px;
     font-size: 1.6em;
     text-shadow: 0 0 8px #00ff00;
@@ -247,9 +247,9 @@ button:hover {
     color: #c0f0c0;
 }
 
-.video-frame { /* Nouveau style pour le cadre vidéo rétro */
+.video-frame {
     background-color: #000;
-    border: 5px solid #6a6a6a; /* Cadre gris de vieille TV */
+    border: 5px solid #6a6a6a;
     padding: 5px;
     margin-bottom: 25px;
     box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
@@ -257,7 +257,7 @@ button:hover {
     overflow: hidden;
 }
 
-.video-frame::before { /* Simulation d'un léger reflet de vieux écran */
+.video-frame::before {
     content: '';
     position: absolute;
     top: 0;
@@ -294,7 +294,7 @@ button:hover {
 }
 
 .social-button {
-    background-color: #ffcc00; /* Jaune pour les liens sociaux */
+    background-color: #ffcc00;
     color: #1a1a2e;
     margin-right: 15px;
     border: 2px solid #ffcc00;
@@ -333,7 +333,7 @@ button:hover {
 
 .separator {
     border: none;
-    border-top: 3px dashed #ffcc00; /* Séparateur rétro jaune */
+    border-top: 3px dashed #ffcc00;
     margin: 50px auto;
     width: 70%;
 }
@@ -377,50 +377,20 @@ button:hover {
     box-shadow: 0 0 20px #ff2a2a, 0 0 30px rgba(255, 42, 42, 0.7);
 }
 
-/* Media queries pour la responsivité */
-@media (max-width: 768px) {
-    h1 { font-size: 1.6em; }
-    .minigames-container h1 { font-size: 2em; }
-    .mission-card h2 { font-size: 1.4em; }
-    .mission-card p { font-size: 0.85em; }
-    .mission-button, .social-button {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-    .final-message h2 { font-size: 2em; }
-    .final-message p { font-size: 1em; }
-}
-
-@media (max-width: 480px) {
-    .container, .minigames-container { padding: 15px; }
-    h1 { font-size: 1.3em; }
-    .minigames-container h1 { font-size: 1.8em; }
-    .mission-card h2 { font-size: 1.2em; }
-    .mission-card p { font-size: 0.8em; }
-    .input-group { gap: 15px; }
-    .social-button {
-        display: block;
-        width: calc(100% - 30px); /* 100% - padding */
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-    .social-button:last-of-type { margin-bottom: 0; }
-}
-
 /* --- Styles spécifiques aux mini-jeux (partie active) --- */
 
 .minigame-area {
-    background-color: #000; /* Fond noir pour l'écran de jeu */
-    border: 3px solid #00ff00; /* Bordure verte néon */
+    background-color: #000;
+    border: 3px solid #00ff00;
     margin: 20px auto;
     padding: 10px;
-    width: 100%; /* S'adapte à la largeur de la carte */
-    max-width: 400px; /* Taille maximale pour l'aire de jeu */
-    aspect-ratio: 16 / 9; /* Ratio pour les écrans de jeu */
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 16 / 9;
     position: relative;
-    overflow: hidden; /* Cache ce qui dépasse */
-    box-shadow: inset 0 0 15px rgba(0,255,0,0.5); /* Effet d'écran allumé */
-    display: flex; /* Centrer le contenu */
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(0,255,0,0.5);
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -441,7 +411,7 @@ button:hover {
 .pacman-dot {
     width: 80%;
     height: 80%;
-    background-color: #ffcc00; /* Points jaunes */
+    background-color: #ffcc00;
     border-radius: 50%;
     justify-self: center;
     align-self: center;
@@ -501,19 +471,19 @@ button:hover {
 .tetris-row {
     display: flex;
     justify-content: space-between;
-    height: 10px; /* Hauteur d'une ligne */
+    height: 10px;
     margin-bottom: 2px;
 }
 .tetris-block {
-    width: 20%; /* 5 blocs par ligne */
+    width: 20%;
     height: 100%;
-    background-color: #00ffff; /* Couleur des blocs */
+    background-color: #00ffff;
     border: 1px solid #008888;
     box-shadow: inset 0 0 3px rgba(255,255,255,0.5);
     cursor: pointer;
 }
 .tetris-block.placed {
-    background-color: #ffcc00; /* Blocs placés */
+    background-color: #ffcc00;
     box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
 }
 .tetris-message {
@@ -535,7 +505,7 @@ button:hover {
 .frogger-car {
     width: 30px;
     height: 20px;
-    background-color: #ff00ff; /* Magenta */
+    background-color: #ff00ff;
     position: absolute;
     left: 0;
     animation: moveCar 3s linear infinite;
@@ -593,8 +563,8 @@ button:hover {
 
 /* Général pour les icônes de "complété" */
 .minigame-completed-icon {
-    display: none; /* Caché par défaut */
-    color: #00ff00; /* Vert victoire */
+    display: none;
+    color: #00ff00;
     font-size: 2em;
     position: absolute;
     top: 10px;
@@ -602,14 +572,40 @@ button:hover {
     text-shadow: 0 0 5px #00ff00;
 }
 .mission-card.completed .minigame-completed-icon {
-    display: block; /* Visible quand la mission est complète */
+    display: block;
 }
 
 /* Réactivité pour les mini-jeux */
+@media (max-width: 768px) {
+    h1 { font-size: 1.6em; }
+    .minigames-container h1 { font-size: 2em; }
+    .mission-card h2 { font-size: 1.4em; }
+    .mission-card p { font-size: 0.85em; }
+    .mission-button, .social-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .final-message h2 { font-size: 2em; }
+    .final-message p { font-size: 1em; }
+}
+
 @media (max-width: 480px) {
+    .container, .minigames-container { padding: 15px; }
+    h1 { font-size: 1.3em; }
+    .minigames-container h1 { font-size: 1.8em; }
+    .mission-card h2 { font-size: 1.2em; }
+    .mission-card p { font-size: 0.8em; }
+    .input-group { gap: 15px; }
+    .social-button {
+        display: block;
+        width: calc(100% - 30px);
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .social-button:last-of-type { margin-bottom: 0; }
     .minigame-area {
         max-width: 90%;
-        height: 200px; /* Ajuster la hauteur sur mobile */
+        height: 200px;
     }
     .pacman-grid {
         grid-template-columns: repeat(7, 1fr);
@@ -620,6 +616,6 @@ button:hover {
         height: 60%;
     }
     .invaders-ship, .invaders-alien, .frogger-car, .pong-paddle, .pong-ball {
-        transform: scale(0.8); /* Réduire la taille des éléments de jeu */
+        transform: scale(0.8);
     }
 }
