@@ -16,9 +16,8 @@ body {
     align-items: center;
     min-height: 100vh; /* Prend au moins toute la hauteur de la vue */
     text-align: center;
-    /* IMPORTANT : Supprime ou commente 'overflow: hidden;' ici pour permettre le défilement */
-    /* overflow: hidden; */ /* Ne doit pas être ici pour permettre le scroll sur les pages plus longues */
     position: relative; /* Pour positionner les éléments superposés comme les scanlines */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
 /* Effet de scanlines (lignes horizontales) pour simuler un écran CRT (vieille télé) */
@@ -40,6 +39,34 @@ body::before {
     z-index: 99; /* Se place au-dessus du contenu mais sous l'écran de chargement */
 }
 
+/* Effets de glitch appliqués au body */
+body.glitch-active {
+    animation: screenGlitch 0.2s infinite alternate; /* Glitch rapide de l'écran */
+    filter: saturate(150%) brightness(120%); /* Couleurs plus vives, plus de luminosité */
+}
+
+body.invert-colors {
+    filter: invert(100%); /* Inversion des couleurs */
+}
+
+body.shift-colors {
+    animation: shiftColors 0.5s infinite alternate; /* Décalage des couleurs */
+}
+
+@keyframes screenGlitch {
+    0% { transform: translate(0, 0); opacity: 1; }
+    25% { transform: translate(1px, -1px); opacity: 0.9; }
+    50% { transform: translate(-1px, 1px); opacity: 1; }
+    75% { transform: translate(2px, -2px); opacity: 0.85; }
+    100% { transform: translate(-2px, 2px); opacity: 1; }
+}
+
+@keyframes shiftColors {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+
 /* --- Styles du Conteneur Principal (pour la page d'accueil) --- */
 .container {
     background-color: #1a1a2e; /* Couleur de fond sombre et riche */
@@ -51,6 +78,7 @@ body::before {
     border: 3px solid #00ffff; /* Bordure néon claire */
     animation: fadeIn 1s ease-out; /* Animation d'apparition */
     box-sizing: border-box; /* Inclut padding et border dans la largeur/hauteur */
+    z-index: 10; /* Assure qu'il est au-dessus du body::before */
 }
 
 /* --- Styles des Titres (H1) --- */
@@ -158,7 +186,7 @@ button:hover {
     min-height: 100vh;
     width: 100%;
     background-color: #050510; /* Fond très sombre */
-    position: absolute; /* Se superpose au reste */
+    position: fixed; /* Reste fixe au-dessus de tout */
     top: 0;
     left: 0;
     z-index: 100; /* Assure qu'il est au-dessus de tout */
@@ -204,146 +232,35 @@ button:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Styles pour la Page des Mini-Jeux (minigames.html) --- */
-.minigames-container {
+/* --- Styles pour la Page d'Attaque du Robot (minigames.html) --- */
+.chaos-container {
     padding: 30px 20px;
     min-height: 100vh; /* Permet au conteneur de s'étendre et de pousser le défilement */
-    display: block; /* S'assurer qu'il se comporte comme un bloc pour le défilement */
-    overflow-y: auto; /* Permet le défilement vertical si le contenu dépasse */
+    display: flex; /* Utilisation de flexbox pour centrer le contenu */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
+    position: relative; /* Pour les éléments qui se déplacent */
 }
 
-.minigames-container h1 {
-    font-size: 2.2em;
-    margin-bottom: 25px;
-    color: #ffcc00; /* Jaune or pour les titres de mission */
-    text-shadow: 0 0 10px #ffcc00, 0 0 20px rgba(255, 204, 0, 0.5);
+.chaos-message {
+    color: #ff4d4d; /* Rouge vif pour les messages du robot */
+    font-size: 1.8em;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px rgba(255, 0, 0, 0.7);
+    margin-bottom: 40px;
+    animation: textFlicker 0.1s infinite alternate; /* Effet de clignotement rapide */
+    position: relative;
+    z-index: 20;
 }
 
-.minigames-container p {
-    font-size: 1em;
-    margin-bottom: 35px;
-    color: #b0e0b0;
+/* Animation de clignotement pour le texte du robot */
+@keyframes textFlicker {
+    0% { opacity: 1; text-shadow: 0 0 10px #ff0000; }
+    50% { opacity: 0.8; text-shadow: 0 0 8px #ff4d4d; }
+    100% { opacity: 1; text-shadow: 0 0 10px #ff0000; }
 }
 
-/* --- Cartes de Mission --- */
-.mission-card {
-    background-color: #2a2a4a; /* Fond des cartes de mission */
-    border: 2px solid #ffcc00; /* Bordure jaune */
-    border-radius: 8px;
-    padding: 30px;
-    margin-bottom: 45px;
-    box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
-    animation: slideIn 0.8s ease-out forwards; /* Animation d'apparition avec délai */
-    opacity: 0; /* Caché au départ pour l'animation */
-    position: relative; /* Pour les éléments décoratifs et l'icône de complétion */
-}
-
-/* Décorations d'angle pour les cartes de mission */
-.mission-card::before, .mission-card::after {
-    content: '';
-    position: absolute;
-    background-color: #ffcc00;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    box-shadow: 0 0 5px #ffcc00;
-}
-.mission-card::before { top: 10px; left: 10px; }
-.mission-card::after { bottom: 10px; right: 10px; }
-
-/* Délais d'animation pour les cartes de mission (effet d'escalier) */
-.mission-card:nth-of-type(1) { animation-delay: 0.2s; }
-.mission-card:nth-of-type(2) { animation-delay: 0.4s; }
-.mission-card:nth-of-type(3) { animation-delay: 0.6s; }
-.mission-card:nth-of-type(4) { animation-delay: 0.8s; }
-.mission-card:nth-of-type(5) { animation-delay: 1.0s; }
-
-/* Animation d'apparition des cartes de mission */
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.mission-card h2 {
-    color: #00ff00; /* Vert pour les titres de mission */
-    margin-bottom: 15px;
-    font-size: 1.6em;
-    text-shadow: 0 0 8px #00ff00;
-}
-
-.mission-card p {
-    font-size: 0.9em;
-    margin-bottom: 25px;
-    color: #c0f0c0;
-}
-
-/* --- Styles des Boutons de Mission et Liens Sociaux --- */
-.mission-button, .social-button {
-    background-color: #00ffff;
-    color: #1a1a2e;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-family: 'Press Start 2P', cursive;
-    text-transform: uppercase;
-    box-shadow: 0 0 10px #00ffff;
-    margin-top: 15px;
-    text-decoration: none; /* Supprime le soulignement des liens */
-    display: inline-block; /* Permet d'appliquer padding/margin comme un bloc */
-    border: 2px solid #00ffff;
-}
-
-.social-button {
-    background-color: #ffcc00; /* Jaune pour les liens sociaux */
-    color: #1a1a2e;
-    margin-right: 15px;
-    border: 2px solid #ffcc00;
-    box-shadow: 0 0 10px #ffcc00;
-}
-
-.social-button:hover {
-    background-color: #e0b000;
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px #e0b000;
-}
-
-.mission-button:hover {
-    background-color: #00e0e0;
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px #00e0e0;
-}
-
-.mission-button:disabled {
-    background-color: #555;
-    color: #aaa;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-    border: 2px dashed #888;
-}
-
-/* --- Statut de Mission --- */
-.mission-status {
-    color: #00ff00;
-    font-size: 0.9em;
-    margin-top: 15px;
-    font-weight: bold;
-    text-shadow: 0 0 5px #00ff00;
-}
-
-/* --- Séparateur Horizontal --- */
-.separator {
-    border: none;
-    border-top: 3px dashed #ffcc00; /* Séparateur rétro jaune */
-    margin: 50px auto;
-    width: 70%;
-}
-
-/* --- Message Final de Victoire --- */
 .final-message {
     background-color: #050510;
     border: 4px solid #00ff00;
@@ -352,6 +269,7 @@ button:hover {
     box-shadow: 0 0 30px rgba(0, 255, 0, 0.7);
     margin-top: 60px;
     animation: fadeIn 1.5s ease-out;
+    z-index: 20; /* Pour qu'il soit au-dessus des autres effets */
 }
 
 .final-message h2 {
@@ -383,245 +301,41 @@ button:hover {
     box-shadow: 0 0 20px #ff2a2a, 0 0 30px rgba(255, 42, 42, 0.7);
 }
 
-/* --- Styles spécifiques aux zones de mini-jeux actives --- */
-.minigame-area {
-    background-color: #000; /* Fond noir pour l'écran de jeu */
-    border: 3px solid #00ff00; /* Bordure verte néon */
-    margin: 20px auto;
-    padding: 10px;
-    width: 100%; /* S'adapte à la largeur de la carte */
-    max-width: 400px; /* Taille maximale pour l'aire de jeu */
-    aspect-ratio: 16 / 9; /* Ratio classique d'écran de jeu */
-    position: relative;
-    overflow: hidden; /* Cache ce qui dépasse de l'aire de jeu */
-    box-shadow: inset 0 0 15px rgba(0,255,0,0.5); /* Effet d'écran allumé */
-    display: flex; /* Pour centrer le contenu interne du mini-jeu */
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 0.8em;
-    color: #00ff00;
-    box-sizing: border-box;
-}
-
-/* --- Styles spécifiques pour chaque mini-jeu --- */
-
-/* Pac-Man Like (Le Labyrinthe du Contenu) */
-.pacman-grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    width: 90%;
-    height: 90%;
-    gap: 2px;
-    border: 1px solid #ffcc00;
-}
-.pacman-dot {
-    width: 80%;
-    height: 80%;
-    background-color: #ffcc00; /* Points jaunes */
-    border-radius: 50%;
-    justify-self: center; /* Centrer le point dans sa cellule de grille */
-    align-self: center;
-    cursor: pointer;
-    transition: background-color 0.1s ease;
-}
-.pacman-dot.eaten {
-    background-color: transparent; /* Le point disparaît quand il est "mangé" */
-}
-.pacman-message {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #ffcc00;
-}
-
-/* Space Invaders Like (La Défense Anti-Spam) */
-.invaders-ship {
-    width: 30px;
-    height: 20px;
-    background-color: #00ff00; /* Vaisseau vert */
+/* Styles pour les éléments qui bougent aléatoirement */
+.moving-element {
     position: absolute;
-    bottom: 5px;
-    left: calc(50% - 15px); /* Centre le vaisseau */
-}
-.invaders-alien {
-    width: 20px;
-    height: 15px;
-    background-color: #ff4d4d; /* Aliens rouges */
-    position: absolute;
-    cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.invaders-alien.hit {
-    opacity: 0; /* Disparaît quand il est "touché" */
-    transform: scale(0);
-}
-.invaders-message {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #ff4d4d;
-}
-
-/* Tetris Like (L'Optimisation des Idées) */
-.tetris-well {
-    width: 80%;
-    height: 80%;
-    background-color: #333;
-    border: 2px solid #aaa;
-    display: flex;
-    flex-direction: column-reverse; /* Pour que les blocs s'empilent vers le haut */
-    overflow: hidden;
-    position: relative;
-}
-.tetris-row {
-    display: flex;
-    justify-content: space-between;
-    height: 10px; /* Hauteur d'une ligne de blocs */
-    margin-bottom: 2px; /* Petite marge entre les lignes */
-}
-.tetris-block {
-    width: 20%; /* 5 blocs par ligne */
-    height: 100%;
-    background-color: #00ffff; /* Couleur des blocs "tombants" */
-    border: 1px solid #008888;
-    box-shadow: inset 0 0 3px rgba(255,255,255,0.5);
-    cursor: pointer;
-}
-.tetris-block.placed {
-    background-color: #ffcc00; /* Couleur des blocs "placés" */
-    box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
-}
-.tetris-message {
-    margin-top: 10px;
-    font-size: 0.9em;
     color: #00ffff;
+    font-size: 1.5em;
+    text-shadow: 0 0 5px #00ffff;
+    pointer-events: none; /* Ne pas bloquer les clics */
+    animation: moveRandomly 10s infinite linear alternate;
+    z-index: 15; /* Au-dessus du fond mais sous les messages importants */
 }
 
-/* Frogger Like (Le Parcours du Streamer) */
-.frogger-road {
-    width: 90%;
-    height: 60%;
-    background-color: #222; /* Couleur de la route */
-    border: 2px solid #555;
-    position: relative;
-    overflow: hidden;
-}
-.frogger-car {
-    width: 30px;
-    height: 20px;
-    background-color: #ff00ff; /* Voitures magenta */
-    position: absolute;
-    left: 0;
-    animation: moveCar 3s linear infinite; /* Animation de mouvement des voitures */
-}
-.frogger-car:nth-child(2) { animation-delay: 1.5s; background-color: #00ffff; } /* Deuxième voiture, couleur et délai différents */
-.frogger-car:nth-child(3) { animation-delay: 3s; background-color: #ffcc00; } /* Troisième voiture, couleur et délai différents */
-
-.frogger-message {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #ff00ff;
-}
-@keyframes moveCar {
-    0% { left: -30px; } /* Commence hors de l'écran à gauche */
-    100% { left: 100%; } /* Termine hors de l'écran à droite */
+@keyframes moveRandomly {
+    0% { top: 10%; left: 10%; transform: scale(1); }
+    25% { top: 80%; left: 20%; transform: scale(1.2); }
+    50% { top: 20%; left: 70%; transform: scale(0.9); }
+    75% { top: 60%; left: 40%; transform: scale(1.1); }
+    100% { top: 10%; left: 10%; transform: scale(1); }
 }
 
-/* Pong Like (Le Duel des Arguments) */
-.pong-court {
-    width: 90%;
-    height: 70%;
-    background-color: #000;
-    border: 2px dashed #fff; /* Ligne médiane en pointillé */
-    position: relative;
-}
-.pong-paddle {
-    width: 8px;
-    height: 40px;
-    background-color: #fff; /* Raquettes blanches */
-    position: absolute;
-    top: calc(50% - 20px); /* Centrées verticalement */
-}
-.pong-paddle.left { left: 5px; }
-.pong-paddle.right { right: 5px; }
-.pong-ball {
-    width: 10px;
-    height: 10px;
-    background-color: #fff; /* Balle blanche */
-    border-radius: 50%;
-    position: absolute;
-    top: calc(50% - 5px);
-    left: calc(50% - 5px);
-    animation: bounceBall 2s linear infinite alternate; /* Animation de la balle */
-}
-.pong-message {
-    margin-top: 10px;
-    font-size: 0.9em;
-    color: #fff;
-}
-@keyframes bounceBall {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(50px, 30px); }
-    50% { transform: translate(100px, 0); }
-    75% { transform: translate(50px, -30px); }
-    100% { transform: translate(0, 0); }
-}
-
-/* --- Icône de Complétion de Mini-Jeu --- */
-.minigame-completed-icon {
-    display: none; /* Caché par défaut */
-    color: #00ff00; /* Vert victoire */
-    font-size: 2em;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    text-shadow: 0 0 5px #00ff00;
-}
-.mission-card.completed .minigame-completed-icon {
-    display: block; /* Visible quand la mission est complète */
-}
-
-/* --- Media Queries pour la Responsivité (Adaptation aux différentes tailles d'écran) --- */
+/* Réactivité pour les différentes tailles d'écran */
 @media (max-width: 768px) {
     h1 { font-size: 1.6em; }
-    .minigames-container h1 { font-size: 2em; }
-    .mission-card h2 { font-size: 1.4em; }
-    .mission-card p { font-size: 0.85em; }
-    .mission-button, .social-button {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
+    .chaos-container h1 { font-size: 2em; }
+    .chaos-message { font-size: 1.4em; }
     .final-message h2 { font-size: 2em; }
     .final-message p { font-size: 1em; }
 }
 
 @media (max-width: 480px) {
-    .container, .minigames-container { padding: 15px; }
+    .container, .chaos-container { padding: 15px; }
     h1 { font-size: 1.3em; }
-    .minigames-container h1 { font-size: 1.8em; }
-    .mission-card h2 { font-size: 1.2em; }
-    .mission-card p { font-size: 0.8em; }
+    .chaos-container h1 { font-size: 1.8em; }
+    .chaos-message { font-size: 1.1em; margin-bottom: 25px; }
     .input-group { gap: 15px; }
-    .social-button {
-        display: block; /* Les boutons sociaux s'empilent sur mobile */
-        width: calc(100% - 30px); /* Prend presque toute la largeur disponible */
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-    .social-button:last-of-type { margin-bottom: 0; }
-    .minigame-area {
-        max-width: 90%;
-        height: 200px; /* Ajuste la hauteur de l'aire de jeu sur mobile */
-    }
-    .pacman-grid {
-        grid-template-columns: repeat(7, 1fr);
-        grid-template-rows: repeat(7, 1fr);
-    }
-    .pacman-dot {
-        width: 60%;
-        height: 60%;
-    }
-    .invaders-ship, .invaders-alien, .frogger-car, .pong-paddle, .pong-ball {
-        transform: scale(0.8); /* Réduit la taille des éléments de jeu pour s'adapter */
-    }
+    .final-message h2 { font-size: 1.8em; }
+    .final-message p { font-size: 0.9em; }
+    .restart-button { padding: 15px 25px; font-size: 1.1em; }
 }
